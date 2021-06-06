@@ -1,0 +1,62 @@
+{
+  "contributions": {
+    "settings": [
+      {
+        "file_patterns": ["/BootstrapAutocomplete/db.json", "/ST-BootstrapAutocomplete/db.json"],
+        "schema": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      },
+      {
+        "file_patterns": ["/BootstrapAutocomplete.sublime-settings"],
+        "schema": {
+          "$id": "sublime://settings/BootstrapAutocomplete",
+          "definitions": {
+            "PluginConfig": {
+              "properties": {
+                "selectors": {
+                  "description": "Scopes that this plugin should activated.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "default": ["meta.attribute-with-value.class.html"]
+                },
+                "versions": {
+                  "description": "Targeted Bootstrap versions.",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["3", "4", "5"]
+                  },
+                  "default": ["4"]
+                }
+              }
+            }
+          },
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/PluginConfig"
+            }
+          ]
+        }
+      },
+      {
+        "file_patterns": ["/*.sublime-project"],
+        "schema": {
+          "properties": {
+            "settings": {
+              "properties": {
+                "BootstrapAutocomplete": {
+                  "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/PluginConfig"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
