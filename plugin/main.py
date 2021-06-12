@@ -1,5 +1,5 @@
-from .functions import get_completion_items
-from .functions import get_plugin_setting
+from .completions import get_completion_items
+from .settings import get_plugin_setting
 from typing import List
 import sublime
 import sublime_plugin

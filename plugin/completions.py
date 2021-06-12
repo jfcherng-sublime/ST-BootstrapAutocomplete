@@ -1,10 +1,8 @@
 from .consts import COMPLETION_DB_PATH
-from .consts import PACKAGE_NAME
-from .consts import SETTINGS_FILENAME
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby
-from typing import Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
+from typing import Iterable, Iterator, List, Sequence, Tuple
 import sublime
 
 
@@ -18,20 +16,6 @@ class DatabaseItem:
 class NormalizedDatabaseItem:
     versions: Sequence[str]
     name: str
-
-
-def get_plugin_setting(key: str, default: Optional[Any] = None) -> Any:
-    return get_plugin_settings().get(key, default)
-
-
-def get_plugin_settings() -> sublime.Settings:
-    project_data = sublime.active_window().project_data() or {}
-    project_settings = project_data.get("settings", {})  # type: Dict[str, Any]
-
-    settings = sublime.load_settings(SETTINGS_FILENAME)
-    settings.update(project_settings.get(PACKAGE_NAME, {}))
-
-    return settings
 
 
 @lru_cache
