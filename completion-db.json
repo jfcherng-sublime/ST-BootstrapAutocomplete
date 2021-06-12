@@ -1,7 +1,4 @@
-// source v3: https://github.com/webchun/bootstrap-3-sublime-autocomplete
-// source v4: https://github.com/proficientdesigners/sublime-text-bs4-autocomplete
-// source v5: https://gist.github.com/felixboet/3ea836c3fac11b3ddb3efbddab17e957
-// format: [version, class_name]
+// item format: [version, class_name]
 [
 	["3", "active"],
 	["3", "affix"],
