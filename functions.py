@@ -3,13 +3,20 @@ from .consts import PACKAGE_NAME
 from .consts import SETTINGS_FILENAME
 from dataclasses import dataclass
 from functools import lru_cache
-from typing import Any, Dict, List, Optional, Tuple
+from itertools import groupby
+from typing import Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
 import sublime
 
 
 @dataclass
 class DatabaseItem:
     version: str
+    name: str
+
+
+@dataclass
+class NormalizedDatabaseItem:
+    versions: Sequence[str]
     name: str
 
 
@@ -43,19 +50,18 @@ def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
 
     items = get_database_items()
     items = filter(lambda item: item.version in versions, items)
-    items = sorted(items, key=lambda item: (item.version, item.name))
 
     return list(
         map(
             lambda item: sublime.CompletionItem(
                 trigger=item.name,
-                annotation=f"Bootstrap {item.version}",
+                annotation=f"Bootstrap {'/'.join(item.versions)}",
                 completion=item.name,
                 completion_format=sublime.COMPLETION_FORMAT_TEXT,
                 kind=(sublime.KIND_ID_MARKUP, "c", ""),
                 details="",
             ),
-            items,
+            normalize_database_items(items),
         ),
     )
 
@@ -68,3 +74,12 @@ def get_database_items() -> Tuple[DatabaseItem, ...]:
             sublime.decode_value(sublime.load_resource(COMPLETION_DB_FILE)),
         )
     )
+
+
+def normalize_database_items(items: Iterable[DatabaseItem]) -> Iterator[NormalizedDatabaseItem]:
+    # pre-sort for groupby
+    items = sorted(items, key=lambda item: item.name)
+
+    # merges same-name items which have different versions
+    for name, group in groupby(items, lambda item: item.name):
+        yield NormalizedDatabaseItem(sorted(item.version for item in group), name)
