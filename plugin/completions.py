@@ -33,7 +33,7 @@ def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
     versions = set(version_str.split(",") if version_str else [])
 
     items = get_database_items()
-    items = filter(lambda item: item.version in versions, items)
+    items = filter(lambda item: item.version in versions, items)  # type: ignore
 
     return list(
         map(
