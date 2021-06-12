@@ -15,16 +15,6 @@ class BootstrapAutocomplete(sublime_plugin.EventListener):
         if selector and view.match_selector(point, selector):
             return self._get_completion_items()
 
-        if view.match_selector(point, "text.html string.quoted"):
-            limit = 250
-            cursor = point - len(prefix) - 1
-            start = max(0, cursor - limit - len(prefix))
-            line = view.substr(sublime.Region(start, cursor))
-            parts = line.split("=")
-
-            if len(parts) > 1 and parts[-2].strip().endswith("class"):
-                return self._get_completion_items()
-
         return []
 
     @staticmethod
