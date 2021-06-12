@@ -2,7 +2,7 @@
   "contributions": {
     "settings": [
       {
-        "file_patterns": ["/BootstrapAutocomplete/db.json", "/ST-BootstrapAutocomplete/db.json"],
+        "file_patterns": ["/BootstrapAutocomplete/completion-db.json", "/ST-BootstrapAutocomplete/completion-db.json"],
         "schema": {
           "allowComments": true,
           "allowTrailingCommas": true

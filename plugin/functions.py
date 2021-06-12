@@ -1,4 +1,4 @@
-from .consts import COMPLETION_DB_FILE
+from .consts import COMPLETION_DB_PATH
 from .consts import PACKAGE_NAME
 from .consts import SETTINGS_FILENAME
 from dataclasses import dataclass
@@ -71,7 +71,7 @@ def get_database_items() -> Tuple[DatabaseItem, ...]:
     return tuple(
         map(
             lambda item: DatabaseItem(*item),
-            sublime.decode_value(sublime.load_resource(COMPLETION_DB_FILE)),
+            sublime.decode_value(sublime.load_resource(COMPLETION_DB_PATH)),
         )
     )
 
