@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.3] - 2021-06-12
+
+- refactor: use singular filename
+
 ## [1.2.2] - 2021-06-12
 
 - refactor: simplify codes

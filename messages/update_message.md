@@ -1,3 +1,3 @@
-## [1.2.2] - 2021-06-12
+## [1.2.3] - 2021-06-12
 
-- refactor: simplify codes
+- refactor: use singular filename
