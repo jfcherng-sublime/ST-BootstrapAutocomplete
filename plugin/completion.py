@@ -1,4 +1,4 @@
-from .consts import COMPLETION_DB_PATH
+from .constant import COMPLETION_DB_PATH
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby

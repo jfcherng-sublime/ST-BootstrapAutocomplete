@@ -1,4 +1,4 @@
-from .completions import get_completion_items
+from .completion import get_completion_items
 from .settings import get_plugin_setting
 from typing import List
 import sublime

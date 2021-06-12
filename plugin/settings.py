@@ -1,5 +1,5 @@
-from .consts import PACKAGE_NAME
-from .consts import SETTINGS_FILENAME
+from .constant import PACKAGE_NAME
+from .constant import SETTINGS_FILENAME
 from typing import Any, Dict, Optional
 import sublime
 
