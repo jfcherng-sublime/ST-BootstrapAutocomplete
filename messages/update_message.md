@@ -1,3 +1,3 @@
-## [1.2.1] - 2021-06-12
+## [1.2.2] - 2021-06-12
 
-- chore(ci): add tests
+- refactor: simplify codes

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2021-06-12
+
+- refactor: simplify codes
+
 ## [1.2.1] - 2021-06-12
 
 - chore(ci): add tests
