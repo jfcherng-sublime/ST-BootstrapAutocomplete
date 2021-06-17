@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.4] - 2021-06-17
+
+- fix: selector cannot has nested groups
+
+  Actually, I think this is a bug in ST core...
+  
+  ```py
+  >>> sublime.score_selector('a b', '(a (b))')
+  0
+  ```
+
 ## [1.2.3] - 2021-06-12
 
 - refactor: use singular filename
