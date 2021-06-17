@@ -24,7 +24,10 @@ From the main menu: `Preferences` -> `BootstrapAutocomplete` -> `Settings`
 ```js
 {
     // scopes that this plugin should activated
-    "selectors": ["meta.attribute-with-value.class.html"],
+    "selectors": [
+        "text.html string.quoted - meta.path",
+        "text.html meta.attribute-with-value.class",
+    ],
     // targeted Bootstrap versions (available versions are: "3", "4", "5")
     "versions": ["4"],
 }
