@@ -9,13 +9,13 @@ on:
       - "**"
     paths:
       - ".github/workflows/**"
-      - "**/*.py"
+      - "**.py"
   pull_request:
     branches:
       - "**"
     paths:
       - ".github/workflows/**"
-      - "**/*.py"
+      - "**.py"
 
 jobs:
   job_lint:
