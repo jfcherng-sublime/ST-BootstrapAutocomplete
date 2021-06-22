@@ -12,13 +12,13 @@ class BootstrapAutocomplete(sublime_plugin.EventListener):
         point = locations[0]
         selectors = get_plugin_setting("selectors")  # type: List[str]
 
-        if self._pt_match_selectors(view, point, selectors):
+        if self._point_match_selectors(view, point, selectors):
             return self._get_completion_items()
 
         return []
 
     @staticmethod
-    def _pt_match_selectors(view: sublime.View, point: int, selectors: Iterable[str]) -> bool:
+    def _point_match_selectors(view: sublime.View, point: int, selectors: Iterable[str]) -> bool:
         return any(view.match_selector(point, selector) for selector in selectors)
 
     @staticmethod
