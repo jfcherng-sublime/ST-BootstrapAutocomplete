@@ -7,7 +7,10 @@ import sublime_plugin
 
 class BootstrapAutocomplete(sublime_plugin.EventListener):
     def on_query_completions(
-        self, view: sublime.View, prefix: str, locations: List[int]
+        self,
+        view: sublime.View,
+        prefix: str,
+        locations: List[int],
     ) -> List[sublime.CompletionItem]:
         point = locations[0]
         selectors = get_plugin_setting("selectors")  # type: List[str]
