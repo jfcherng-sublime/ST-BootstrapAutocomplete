@@ -13,7 +13,7 @@
         "schema": {
           "$id": "sublime://settings/BootstrapAutocomplete",
           "definitions": {
-            "PluginConfig": {
+            "plugin_config": {
               "properties": {
                 "selectors": {
                   "description": "Scopes that this plugin should activated.",
@@ -21,7 +21,7 @@
                   "items": {
                     "type": "string"
                   },
-                  "default": ["meta.attribute-with-value.class.html"]
+                  "default": ["text.html string.quoted - meta.path", "text.html meta.attribute-with-value.class"]
                 },
                 "versions": {
                   "description": "Targeted Bootstrap versions.",
@@ -38,7 +38,7 @@
           "type": "object",
           "allOf": [
             {
-              "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/PluginConfig"
+              "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/plugin_config"
             }
           ]
         }
@@ -50,7 +50,7 @@
             "settings": {
               "properties": {
                 "BootstrapAutocomplete": {
-                  "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/PluginConfig"
+                  "$ref": "sublime://settings/BootstrapAutocomplete#/definitions/plugin_config"
                 }
               }
             }

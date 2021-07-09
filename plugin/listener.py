@@ -13,7 +13,7 @@ class BootstrapAutocomplete(sublime_plugin.EventListener):
         locations: List[int],
     ) -> List[sublime.CompletionItem]:
         point = locations[0]
-        selectors = get_plugin_setting("selectors")  # type: List[str]
+        selectors: List[str] = get_plugin_setting("selectors")
 
         if self._point_match_selectors(view, point, selectors):
             return self._get_completion_items()

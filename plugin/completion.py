@@ -2,7 +2,7 @@ from .constant import COMPLETION_DB_PATH
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby
-from typing import Iterable, Iterator, List, Sequence, Tuple
+from typing import Generator, Iterable, List, Sequence, Tuple
 import sublime
 
 
@@ -32,8 +32,8 @@ def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
 
     versions = set(version_str.split(",") if version_str else [])
 
-    items = get_database_items()
-    items = filter(lambda item: item.version in versions, items)  # type: ignore
+    items: Iterable[DatabaseItem] = get_database_items()
+    items = filter(lambda item: item.version in versions, items)
 
     return list(
         map(
@@ -60,10 +60,13 @@ def get_database_items() -> Tuple[DatabaseItem, ...]:
     )
 
 
-def normalize_database_items(items: Iterable[DatabaseItem]) -> Iterator[NormalizedDatabaseItem]:
+def normalize_database_items(items: Iterable[DatabaseItem]) -> Generator[NormalizedDatabaseItem, None, None]:
+    def sorter(item: DatabaseItem) -> str:
+        return item.name
+
     # pre-sort for groupby
-    items = sorted(items, key=lambda item: item.name)
+    items = sorted(items, key=sorter)
 
     # merges same-name items which have different versions
-    for name, group in groupby(items, lambda item: item.name):
+    for name, group in groupby(items, sorter):
         yield NormalizedDatabaseItem(sorted(item.version for item in group), name)
