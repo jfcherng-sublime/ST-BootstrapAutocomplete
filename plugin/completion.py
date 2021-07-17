@@ -2,7 +2,7 @@ from .constant import COMPLETION_DB_PATH
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby
-from typing import Generator, Iterable, List, Sequence, Tuple
+from typing import Generator, Iterable, Sequence, Tuple
 import sublime
 
 
@@ -19,7 +19,7 @@ class NormalizedDatabaseItem:
 
 
 @lru_cache
-def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
+def get_completion_list(version_str: str) -> sublime.CompletionList:
     """
     Gets the completion items.
 
@@ -27,7 +27,7 @@ def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
     :type       version_str:  str
 
     :returns:   The completion items.
-    :rtype:     List[sublime.CompletionItem]
+    :rtype:     sublime.CompletionList
     """
 
     versions = set(version_str.split(",") if version_str else [])
@@ -35,18 +35,20 @@ def get_completion_items(version_str: str) -> List[sublime.CompletionItem]:
     items: Iterable[DatabaseItem] = get_database_items()
     items = filter(lambda item: item.version in versions, items)
 
-    return list(
-        map(
-            lambda item: sublime.CompletionItem(
-                trigger=item.name,
-                annotation=f"Bootstrap {'/'.join(item.versions)}",
-                completion=item.name,
-                completion_format=sublime.COMPLETION_FORMAT_TEXT,
-                kind=(sublime.KIND_ID_MARKUP, "c", ""),
-                details="",
-            ),
-            normalize_database_items(items),
-        ),
+    return sublime.CompletionList(
+        tuple(
+            map(
+                lambda item: sublime.CompletionItem(
+                    trigger=item.name,
+                    annotation=f"Bootstrap {'/'.join(item.versions)}",
+                    completion=item.name,
+                    completion_format=sublime.COMPLETION_FORMAT_TEXT,
+                    kind=(sublime.KIND_ID_MARKUP, "c", ""),
+                    details="",
+                ),
+                normalize_database_items(items),
+            )
+        )
     )
 
 
