@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.6] - 2021-07-17
+
+- refactor: simplify codes
+
 ## [1.2.5] - 2021-07-09
 
 - refactor: just some internal tidy codes
