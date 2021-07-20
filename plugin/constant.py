@@ -1,4 +1,4 @@
-PACKAGE_NAME = __package__.partition(".")[0]
+PLUGIN_NAME = __package__.partition(".")[0]
 
-COMPLETION_DB_PATH = f"Packages/{PACKAGE_NAME}/completion-db.json"
-SETTINGS_FILENAME = f"{PACKAGE_NAME}.sublime-settings"
+COMPLETION_DB_PATH = f"Packages/{PLUGIN_NAME}/completion-db.json"
+SETTINGS_FILENAME = f"{PLUGIN_NAME}.sublime-settings"

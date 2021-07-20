@@ -1,5 +1,6 @@
 from .completion import get_completion_list
-from .settings import get_plugin_setting
+from .settings import get_selectors
+from .settings import get_versions
 from typing import Iterable, List, Optional
 import sublime
 import sublime_plugin
@@ -12,15 +13,10 @@ class BootstrapAutocomplete(sublime_plugin.EventListener):
         prefix: str,
         locations: List[int],
     ) -> Optional[sublime.CompletionList]:
-        point = locations[0]
-        selectors: List[str] = get_plugin_setting("selectors")
-
-        if not self._point_match_selectors(view, point, selectors):
+        if not (window := view.window()) or not self._point_match_selectors(view, locations[0], get_selectors(window)):
             return None
 
-        # in case someone uses int values...
-        versions = map(str, get_plugin_setting("versions"))
-        return get_completion_list(",".join(versions))
+        return get_completion_list(",".join(get_versions(window)))
 
     @staticmethod
     def _point_match_selectors(view: sublime.View, point: int, selectors: Iterable[str]) -> bool:
