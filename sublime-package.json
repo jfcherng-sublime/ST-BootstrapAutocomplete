@@ -18,18 +18,34 @@
                 "selectors": {
                   "description": "Scopes that this plugin should activated.",
                   "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ],
                   "default": ["text.html string.quoted - meta.path", "text.html meta.attribute-with-value.class"]
                 },
                 "versions": {
                   "description": "Targeted Bootstrap versions.",
-                  "type": "array",
-                  "items": {
-                    "type": "string",
-                    "enum": ["3", "4", "5"]
-                  },
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": ["3", "4", "5"]
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": ["3", "4", "5"]
+                      }
+                    }
+                  ],
                   "default": ["4"]
                 }
               }
