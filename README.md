@@ -78,4 +78,4 @@ This plugin's autocompletion lists come from:
 
 ### Bootstrap 5 Sources
 
-- [felixboet/bootstrap-5-classes-list](https://gist.github.com/felixboet/3ea836c3fac11b3ddb3efbddab17e957)
+- Parsed from the official distribution.
