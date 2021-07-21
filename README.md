@@ -1,10 +1,10 @@
 # ST-BootstrapAutocomplete
 
 [![Required ST Build](https://img.shields.io/badge/ST-4105+-orange.svg?style=flat-square&logo=sublime-text)](https://www.sublimetext.com)
-[![GitHub Actions](https://img.shields.io/github/workflow/status/jfcherng-sublime/ST-BootstrapAutocomplete/Main?style=flat-square)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/actions)
+[![GitHub Actions](https://img.shields.io/github/workflow/status/jfcherng-sublime/ST-BootstrapAutocomplete/Python?style=flat-square)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/actions)
 [![Package Control](https://img.shields.io/packagecontrol/dt/BootstrapAutocomplete?style=flat-square)](https://packagecontrol.io/packages/BootstrapAutocomplete)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/tags)
-[![Project license](https://img.shields.io/github/license/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/blob/master/LICENSE)
+[![Project license](https://img.shields.io/github/license/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/blob/st4/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/stargazers)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-blue.svg?style=flat-square&logo=paypal)](https://www.paypal.me/jfcherng/5usd)
 
@@ -19,7 +19,7 @@ This plugin is design to support various versions of Bootstrap's autocompletion 
 At this moment, it supports Bootstrap 3, 4 (default) and 5. If you find a missing class name,
 an issue or pull request is always welcome.
 
-![screenshot-st4](https://raw.githubusercontent.com/jfcherng-sublime/ST-BootstrapAutocomplete/main/docs/screenshot-st4.png)
+![screenshot-st4](https://raw.githubusercontent.com/jfcherng-sublime/ST-BootstrapAutocomplete/st4/docs/screenshot-st4.png)
 
 ## Installation
 
@@ -27,7 +27,7 @@ This package is available on Package Control by the name of [BootstrapAutocomple
 
 ## Global Settings
 
-From the main menu: `Preferences` -> `BootstrapAutocomplete` -> `Settings`
+From the main menu: `Preferences` » `BootstrapAutocomplete` » `Settings`
 
 ```js
 {
@@ -46,7 +46,7 @@ From the main menu: `Preferences` -> `BootstrapAutocomplete` -> `Settings`
 You most likely want to use only a specific version of Bootstrap in a project.
 In that case, you can specify the version(s) you want to use in your project settings.
 
-From the main menu: `Project` -> `Edit Project`
+From the main menu: `Project` » `Edit Project`
 
 ```js
 {
@@ -74,8 +74,8 @@ This plugin's autocompletion lists come from:
 
 ### Bootstrap 4 Sources
 
-- [proficientdesigners/sublime-text-bs4-autocomplete](https://github.com/proficientdesigners/sublime-text-bs4-autocomplete/blob/5f52ecd3724f61922d2fc73085023c7f421e9615/bootstrap_4_autocomplete.py#L4)
+- Manually extracted from the official `v4.6.0` distribution.
 
 ### Bootstrap 5 Sources
 
-- Parsed from the official distribution.
+- Manually extracted from the official `v5.0.2` distribution.
