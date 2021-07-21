@@ -12,7 +12,7 @@ class BootstrapAutocomplete(sublime_plugin.EventListener):
         prefix: str,
         locations: List[int],
     ) -> Optional[sublime.CompletionList]:
-        if not (window := view.window()):
+        if view.element() or not (window := view.window()):
             return None
 
         point = locations[0]
