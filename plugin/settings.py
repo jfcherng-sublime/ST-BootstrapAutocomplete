@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+# __future__ must be the first import
+from collections import ChainMap
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, Set
 import sublime
 import sublime_plugin
@@ -7,7 +12,7 @@ def get_merged_plugin_setting(window: sublime.Window, key: str, default: Optiona
     return get_merged_plugin_settings(window).get(key, default)
 
 
-def get_merged_plugin_settings(window: sublime.Window) -> Dict[str, Any]:
+def get_merged_plugin_settings(window: sublime.Window) -> SettingsDict:
     return AioSettings.get_all(window)
 
 
@@ -19,7 +24,7 @@ def get_st_settings() -> sublime.Settings:
     return sublime.load_settings("Preferences.sublime-settings")
 
 
-def settings_normalizer(settings: Dict[str, Any]) -> None:
+def settings_normalizer(settings: SettingsDict) -> None:
     # --------- #
     # selectors #
     # --------- #
@@ -37,7 +42,7 @@ def settings_normalizer(settings: Dict[str, Any]) -> None:
         settings["versions"] = list(map(str, versions))  # in case someone uses int values...
 
 
-SettingsDict = Dict[str, Any]
+SettingsDict = MutableMapping[str, Any]
 WindowId = int
 
 
@@ -154,15 +159,17 @@ class AioSettings(sublime_plugin.EventListener):
 
     @classmethod
     def _update_project_plugin_settings(cls, window: sublime.Window) -> None:
-        cls._project_plugin_settings[window.id()] = (
+        window_id = window.id()
+        cls._project_plugin_settings[window_id] = (
             (window.project_data() or {}).get("settings", {}).get(cls.plugin_name, {})
         )
         if cls._settings_normalizer:
-            cls._settings_normalizer(cls._project_plugin_settings[window.id()])
+            cls._settings_normalizer(cls._project_plugin_settings[window_id])
 
     @classmethod
     def _update_merged_plugin_settings(cls, window: sublime.Window) -> None:
-        cls._merged_plugin_settings[window.id()] = {
-            **cls._plugin_settings,
-            **(cls._project_plugin_settings.get(window.id()) or {}),
-        }
+        window_id = window.id()
+        cls._merged_plugin_settings[window_id] = ChainMap(
+            cls._project_plugin_settings.get(window_id) or {},
+            cls._plugin_settings,
+        )
