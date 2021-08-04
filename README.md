@@ -16,7 +16,7 @@ This Sublime Text **4** plugin means to unify other Bootstrap autocompletion plu
 - Maybe more implicit ones...
 
 This plugin is design to support various versions of Bootstrap's autocompletion with ease.
-At this moment, it supports Bootstrap 3, 4 (default) and 5. If you find a missing class name,
+At this moment, it supports Bootstrap 2, 3, 4 (default) and 5. If you find a missing class name,
 an issue or pull request is always welcome.
 
 ![screenshot-st4](https://raw.githubusercontent.com/jfcherng-sublime/ST-BootstrapAutocomplete/st4/docs/screenshot-st4.png)
@@ -36,7 +36,7 @@ From the main menu: `Preferences` » `BootstrapAutocomplete` » `Settings`
         "text.html string.quoted - meta.path",
         "text.html meta.attribute-with-value.class",
     ],
-    // targeted Bootstrap versions (available versions are: "3", "4", "5")
+    // targeted Bootstrap versions (available versions are: "2", "3", "4", "5")
     "versions": ["4"],
 }
 ```
@@ -66,14 +66,14 @@ From the main menu: `Project` » `Edit Project`
 
 ## Acknowledgment
 
-This plugin's autocompletion lists come from:
+This plugin's autocompletion lists are manually extracted from
 
-- Extracted from the official `v3.4.1` distribution.
-- Extracted from the official `v4.6.0` distribution.
-- Extracted from the official `v5.1.0` distribution.
+- Official Bootstrap `v2.3.2`
+- Official Bootstrap `v3.4.1`
+- Official Bootstrap `v4.6.0`
+- Official Bootstrap `v5.1.0`
 
-With regex `\.[a-zA-Z][a-zA-Z\-\_\d]*(?=[\s,:)\[.])`
-and remove false positives:
+with regex `\.[a-zA-Z][a-zA-Z\-\_\d]*(?=[\s,:)\[.])` and remove false positives
 
 - `.w3`
 - `.css`

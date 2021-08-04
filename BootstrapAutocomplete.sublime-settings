@@ -4,6 +4,6 @@
         "text.html string.quoted - meta.path",
         "text.html meta.attribute-with-value.class",
     ],
-    // targeted Bootstrap versions (available versions are: "3", "4", "5")
+    // targeted Bootstrap versions (available versions are: "2", 3", "4", "5")
     "versions": ["4"],
 }
