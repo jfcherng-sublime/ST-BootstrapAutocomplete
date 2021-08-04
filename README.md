@@ -68,21 +68,13 @@ From the main menu: `Project` » `Edit Project`
 
 This plugin's autocompletion lists come from:
 
-### Bootstrap 3 Sources
+- Extracted from the official `v3.4.1` distribution.
+- Extracted from the official `v4.6.0` distribution.
+- Extracted from the official `v5.1.0` distribution.
 
-- [webchun/bootstrap-3-sublime-autocomplete](https://github.com/webchun/bootstrap-3-sublime-autocomplete/blob/b120b45677c31c1530df8a444fe0e4e18d72a555/bootstrap_3_autocomplete.py#L5)
+With regex `\.[a-zA-Z][a-zA-Z\-\_\d]*(?=[\s,:)\[.])`
+and remove false positives:
 
-### Bootstrap 4 Sources
-
-- Manually extracted from the official `v4.6.0` distribution.
-
-### Bootstrap 5 Sources
-
-- Manually extracted from the official `v5.1.0` distribution.
-
-  With regex `\.[a-zA-Z][a-zA-Z\-\_\d]*(?=[\s,:)\[.])`
-  and remove false positives:
-
-  - `.w3`
-  - `.css`
-  - `.map`
+- `.w3`
+- `.css`
+- `.map`
