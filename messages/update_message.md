@@ -1,11 +1,4 @@
-## [1.2.7] - 2021-07-21
+## [1.3.0] - 2021-08-05
 
-- fix: extract BS 5 classes from `bootstrap.css`
-- refactor: utilize `AioSettings`
-- refactor: allow `versions` like `"5"` if there is only a version used
-
-  ```js
-  {
-      "versions": "5",
-  }
-  ```
+- feat: add support for Bootstrap `v2`
+- chore: update Bootstrap classes for `v3.4.1` and `v5.1.0`
