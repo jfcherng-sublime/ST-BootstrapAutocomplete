@@ -78,4 +78,11 @@ This plugin's autocompletion lists come from:
 
 ### Bootstrap 5 Sources
 
-- Manually extracted from the official `v5.0.2` distribution.
+- Manually extracted from the official `v5.1.0` distribution.
+
+  With regex `\.[a-zA-Z][a-zA-Z\-\_\d]*(?=[\s,:)\[.])`
+  and remove false positives:
+
+  - `.w3`
+  - `.css`
+  - `.map`
