@@ -2,8 +2,7 @@ from __future__ import annotations
 
 # __future__ must be the first import
 from collections import ChainMap
-from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, Set
+from typing import Any, Callable, Dict, List, Mapping, MutableMapping, Optional, Set
 import sublime
 import sublime_plugin
 
@@ -12,7 +11,7 @@ def get_merged_plugin_setting(window: sublime.Window, key: str, default: Optiona
     return get_merged_plugin_settings(window).get(key, default)
 
 
-def get_merged_plugin_settings(window: sublime.Window) -> SettingsDict:
+def get_merged_plugin_settings(window: sublime.Window) -> MergedSettingsDict:
     return AioSettings.get_all(window)
 
 
@@ -43,6 +42,7 @@ def settings_normalizer(settings: SettingsDict) -> None:
 
 
 SettingsDict = MutableMapping[str, Any]
+MergedSettingsDict = Mapping[str, Any]
 WindowId = int
 
 
@@ -59,7 +59,7 @@ class AioSettings(sublime_plugin.EventListener):
 
     # window-level
     _project_plugin_settings: Dict[WindowId, SettingsDict] = {}
-    _merged_plugin_settings: Dict[WindowId, SettingsDict] = {}
+    _merged_plugin_settings: Dict[WindowId, MergedSettingsDict] = {}
 
     # ----------- #
     # public APIs #
@@ -93,7 +93,7 @@ class AioSettings(sublime_plugin.EventListener):
         return cls.get_all(window).get(key, default)
 
     @classmethod
-    def get_all(cls, window: sublime.Window) -> SettingsDict:
+    def get_all(cls, window: sublime.Window) -> MergedSettingsDict:
         return cls._merged_plugin_settings.get(window.id()) or {}
 
     # ---------- #
