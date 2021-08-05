@@ -6,7 +6,10 @@ target-version = ['py38']
 exclude = '''
 /(
   \.git |
+  \.mypy_cache |
+  \.?venv |
   plugin/libs |
+  tests/files |
   stubs |
   typings
 )/

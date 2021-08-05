@@ -4,3 +4,8 @@
 black
 flake8
 mypy
+
+# for scripts
+fire
+requests
+tinycss2
