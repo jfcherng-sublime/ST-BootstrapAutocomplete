@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2021-08-05
+
+- fix: plugin not working
+
 ## [1.3.0] - 2021-08-05
 
 - feat: add support for Bootstrap `v2`
