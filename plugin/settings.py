@@ -52,6 +52,7 @@ class AioSettings(sublime_plugin.EventListener):
     _on_settings_change_callbacks: Dict[str, Callable[[sublime.Window], None]] = {}
     _plugin_settings_object: Optional[sublime.Settings] = None
     _settings_normalizer: Optional[Callable[[SettingsDict], None]] = None
+    _settings_producer: Optional[Callable[[MergedSettingsDict], Dict[str, Any]]] = None
     _tracked_windows: Set[int] = set()
 
     # application-level
@@ -87,6 +88,10 @@ class AioSettings(sublime_plugin.EventListener):
     @classmethod
     def set_settings_normalizer(cls, normalizer: Optional[Callable[[SettingsDict], None]]) -> None:
         cls._settings_normalizer = normalizer
+
+    @classmethod
+    def set_settings_producer(cls, producer: Optional[Callable[[MergedSettingsDict], Dict[str, Any]]]) -> None:
+        cls._settings_producer = producer
 
     @classmethod
     def get(cls, window: sublime.Window, key: str, default: Optional[Any] = None) -> Any:
@@ -153,14 +158,16 @@ class AioSettings(sublime_plugin.EventListener):
     @classmethod
     def _update_plugin_settings(cls) -> None:
         assert cls._plugin_settings_object
-        cls._plugin_settings = cls._plugin_settings_object.to_dict()
+        cls._plugin_settings = {"_comment": "plugin_settings"}
+        cls._plugin_settings.update(cls._plugin_settings_object.to_dict())
         if cls._settings_normalizer:
             cls._settings_normalizer(cls._plugin_settings)
 
     @classmethod
     def _update_project_plugin_settings(cls, window: sublime.Window) -> None:
         window_id = window.id()
-        cls._project_plugin_settings[window_id] = (
+        cls._project_plugin_settings[window_id] = {"_comment": "project_settings"}
+        cls._project_plugin_settings[window_id].update(
             (window.project_data() or {}).get("settings", {}).get(cls.plugin_name, {})
         )
         if cls._settings_normalizer:
@@ -169,7 +176,14 @@ class AioSettings(sublime_plugin.EventListener):
     @classmethod
     def _update_merged_plugin_settings(cls, window: sublime.Window) -> None:
         window_id = window.id()
-        cls._merged_plugin_settings[window_id] = ChainMap(
+
+        merged = ChainMap(
             cls._project_plugin_settings.get(window_id) or {},
             cls._plugin_settings,
         )
+
+        produced = {"_comment": "produced_settings"}
+        if cls._settings_producer:
+            produced.update(cls._settings_producer(merged))
+
+        cls._merged_plugin_settings[window_id] = ChainMap(produced, *(merged.maps))
