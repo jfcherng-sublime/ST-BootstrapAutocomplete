@@ -1,2 +1,4 @@
+from pathlib import Path
+
 PLUGIN_NAME = __package__.partition(".")[0]
-COMPLETION_DB_PATH = f"Packages/{PLUGIN_NAME}/completion-db.json"
+DB_DIR = Path(f"Packages/{PLUGIN_NAME}/db")

@@ -19,5 +19,5 @@ indent_size = 2
 [sublime-package.json]
 indent_size = 2
 
-[completion-db.json]
+[db/*.json]
 indent_style = tab
