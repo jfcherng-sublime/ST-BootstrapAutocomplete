@@ -1,17 +1,33 @@
 from typing import Generator, Iterable, Optional, Set
 import fire
 import io
+import json
 import requests
+import sys
 import tinycss2
 import tinycss2.ast
 
+# always use \n as line ending for printing
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, newline="\n")
 
-def extract_stylesheet_class_names(path: str) -> None:
+
+def extract_stylesheet_class_names(
+    path: str,
+    output_format: str = "json",
+    lib_name: str = "UnknownLib",
+    lib_version: str = "0",
+) -> None:
     """
     Extract class names from the stylesheet.
 
-    :param      path:  The path or URL of the stylesheet
-    :type       path:  str
+    :param      path:           The path or URL of the stylesheet
+    :type       path:           str
+    :param      output_format:  The output format
+    :type       output_format:  str
+    :param      lib_name:       The library name
+    :type       lib_name:       str
+    :param      lib_version:    The library version
+    :type       lib_version:    str
     """
     class_names: Set[str] = set()
     content = get_file_content(path)
@@ -28,7 +44,22 @@ def extract_stylesheet_class_names(path: str) -> None:
             class_names |= set(find_class_names(rule.prelude))
             continue
 
-    print(*sorted(class_names), sep="\n")
+    class_names_sorted = sorted(class_names)
+
+    if output_format == "json":
+        print(
+            json.dumps(
+                {
+                    "name": lib_name,
+                    "version": str(lib_version),
+                    "classes": class_names_sorted,
+                },
+                ensure_ascii=False,
+                indent="\t",
+            )
+        )
+    else:
+        print("\n".join(class_names_sorted))
 
 
 def find_class_names(nodes: Iterable[tinycss2.ast.Node]) -> Generator[str, None, None]:
