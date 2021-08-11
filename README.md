@@ -73,7 +73,7 @@ This plugin's autocompletion lists are extracted from
 - Official Bootstrap `v4.6.0`
 - Official Bootstrap `v5.1.0`
 
-with `scripts/extract_css_class_names.py`.
+with `scripts/extract_class_names_auto.sh`.
 
 ```bash
 # setup environment
@@ -83,7 +83,5 @@ source .venv/bin/activate # if not on Windows
 python -m pip install -U -r requirements.txt
 
 # extract class names
-python scripts/extract_class_names.py "https://cdn.jsdelivr.net/npm/bootstrap@3/dist/css/bootstrap.min.css" > "db/3.json"
-python scripts/extract_class_names.py "https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" > "db/4.json"
-python scripts/extract_class_names.py "https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" > "db/5.json"
+bash "scripts/extract_class_names_auto.sh"
 ```
