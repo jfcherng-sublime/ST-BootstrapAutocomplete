@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2021-08-11
+
+- feat: add a script to download & parse all classes
+- refactor: split the db into corresponding versions
+
 ## [1.3.1] - 2021-08-05
 
 - fix: plugin not working
