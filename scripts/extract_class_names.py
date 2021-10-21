@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Generator, Iterable, Optional, Set
 import fire
 import io
@@ -86,9 +87,7 @@ def get_file_content(path: str) -> str:
     """
     if path.startswith(("http://", "https://")):
         return str(requests.get(path).content, "utf-8")
-
-    with io.open(path, "r", encoding="utf-8") as f:
-        return f.read()
+    return Path(path).read_text(encoding="utf-8")
 
 
 if __name__ == "__main__":
