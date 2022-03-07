@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.3] - 2022-03-07
+
+- fix: modules should be reloaded when update plugin
+- refactor: simplify codes
+
 ## [1.3.2] - 2021-08-11
 
 - feat: add a script to download & parse all classes
