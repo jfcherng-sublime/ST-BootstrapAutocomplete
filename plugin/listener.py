@@ -5,7 +5,7 @@ import sublime
 import sublime_plugin
 
 
-class BootstrapAutocomplete(sublime_plugin.EventListener):
+class BootstrapAutocompleteEventListener(sublime_plugin.EventListener):
     def on_query_completions(
         self,
         view: sublime.View,
