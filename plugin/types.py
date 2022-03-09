@@ -1,5 +1,11 @@
 from dataclasses import dataclass
-from typing import Tuple
+from typing import List, Tuple, TypedDict
+
+
+class DbSchema(TypedDict):
+    name: str
+    version: str
+    classes: List[str]
 
 
 @dataclass

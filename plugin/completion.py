@@ -1,13 +1,13 @@
 from .constant import DB_DIR
-from .types import DatabaseItem, NormalizedDatabaseItem
+from .types import DatabaseItem, DbSchema, NormalizedDatabaseItem
 from functools import lru_cache
 from itertools import groupby
-from typing import Any, Dict, Generator, Iterable, Tuple
+from typing import Generator, Iterable, Tuple
 import sublime
 
 
 @lru_cache
-def load_database(version: str) -> Dict[str, Any]:
+def load_database(version: str) -> DbSchema:
     return sublime.decode_value(sublime.load_resource(str(DB_DIR / f"{version}.json")))
 
 
@@ -46,12 +46,16 @@ def get_completion_list(version_str: str) -> sublime.CompletionList:
 def _get_database_items(versions: Iterable[str]) -> Generator[DatabaseItem, None, None]:
     for version in versions:
         db = load_database(version)
-        for name in db.get("classes", []):
-            yield DatabaseItem(lib_name=str(db["name"]), lib_version=str(db["version"]), item_name=str(name))
+        for name in db["classes"]:
+            yield DatabaseItem(
+                lib_name=db["name"],
+                lib_version=db["version"],
+                item_name=name,
+            )
 
 
 def _normalize_database_items(items: Iterable[DatabaseItem]) -> Generator[NormalizedDatabaseItem, None, None]:
-    def sorter(item: DatabaseItem) -> Tuple[Any, ...]:
+    def sorter(item: DatabaseItem) -> Tuple[str, str]:
         return (item.lib_name, item.item_name)
 
     # pre-sort for groupby
