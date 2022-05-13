@@ -1,5 +1,11 @@
 # BootstrapAutocomplete Changelog
 
+## 1.3.5
+
+- refactor: tidy codes
+- chore: update db for 5.2.0-beta1
+- refactor: improve type annotations
+
 ## 1.3.4
 
 - refactor: simplify `boot.py`
