@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 1.3.6
+
+- revert: refactor: tidy codes
+
 ## 1.3.5
 
 - refactor: tidy codes
