@@ -15,7 +15,7 @@ This Sublime Text **4** plugin means to unify other Bootstrap autocompletion plu
 - [Bootstrap 4x Autocomplete](https://packagecontrol.io/packages/Bootstrap%204x%20Autocomplete)
 - Maybe more implicit ones...
 
-This plugin is design to support various versions of Bootstrap's autocompletion with ease.
+This plugin is designed to support various versions of Bootstrap's autocompletion with ease.
 At this moment, it supports Bootstrap 2, 3, 4 (default) and 5. If you find a missing class name,
 an issue or pull request is always welcome.
 
@@ -71,7 +71,7 @@ This plugin's autocompletion lists are extracted from
 - Official Bootstrap `v2.3.2`
 - Official Bootstrap `v3.4.1`
 - Official Bootstrap `v4.6.0`
-- Official Bootstrap `v5.1.0`
+- Official Bootstrap `v5.2.0-beta1`
 
 with `scripts/extract_class_names_auto.sh`.
 
