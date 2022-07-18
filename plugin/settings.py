@@ -3,6 +3,7 @@ from __future__ import annotations
 # __future__ must be the first import
 from collections import ChainMap
 from typing import Any, Callable, Dict, List, Mapping, MutableMapping, Optional, Set
+
 import sublime
 import sublime_plugin
 

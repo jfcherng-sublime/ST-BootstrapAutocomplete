@@ -1,8 +1,10 @@
-from .completion import get_completion_list
-from .settings import get_merged_plugin_setting
 from typing import Iterable, List, Optional
+
 import sublime
 import sublime_plugin
+
+from .completion import get_completion_list
+from .settings import get_merged_plugin_setting
 
 
 class BootstrapAutocompleteEventListener(sublime_plugin.EventListener):

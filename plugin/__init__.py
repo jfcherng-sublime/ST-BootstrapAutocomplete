@@ -1,9 +1,8 @@
 from .constant import PLUGIN_NAME
-from .settings import settings_normalizer
 
 # import all listeners and commands
 from .listener import BootstrapAutocompleteEventListener
-from .settings import AioSettings
+from .settings import AioSettings, settings_normalizer
 
 __all__ = (
     # ST: core

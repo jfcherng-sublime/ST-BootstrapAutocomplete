@@ -1,9 +1,11 @@
-from .constant import DB_DIR
-from .types import DatabaseItem, DbSchema, NormalizedDatabaseItem
 from functools import lru_cache
 from itertools import groupby
 from typing import Generator, Iterable, Tuple
+
 import sublime
+
+from .constant import DB_DIR
+from .types import DatabaseItem, DbSchema, NormalizedDatabaseItem
 
 
 @lru_cache

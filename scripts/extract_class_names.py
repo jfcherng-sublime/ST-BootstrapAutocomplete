@@ -1,10 +1,11 @@
-from pathlib import Path
-from typing import Generator, Iterable, Optional, Set
-import fire
 import io
 import json
-import requests
 import sys
+from pathlib import Path
+from typing import Generator, Iterable, Optional, Set
+
+import fire
+import requests
 import tinycss2
 import tinycss2.ast
 
