@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 1.3.7
+
+- chore: update db for 4.6.2
+
 ## 1.3.6
 
 - revert: refactor: tidy codes
