@@ -1548,6 +1548,7 @@
 		"w-50",
 		"w-75",
 		"w-auto",
-		"was-validated"
+		"was-validated",
+		"width"
 	]
 }
