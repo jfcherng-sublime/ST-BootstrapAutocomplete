@@ -70,8 +70,8 @@ This plugin's autocompletion lists are extracted from
 
 - Official Bootstrap `v2.3.2`
 - Official Bootstrap `v3.4.1`
-- Official Bootstrap `v4.6.0`
-- Official Bootstrap `v5.2.0`
+- Official Bootstrap `v4.6.2`
+- Official Bootstrap `v5.2.0-beta1`
 
 with `scripts/extract_class_names_auto.sh`.
 
