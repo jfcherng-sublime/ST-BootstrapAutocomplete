@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="${SCRIPT_DIR}/.."
 DB_DIR="${PROJECT_DIR}/db"
 
@@ -15,7 +15,7 @@ python \
     --output_format="json" \
     --lib_name="Bootstrap" \
     --lib_version="3" \
-    > "${DB_DIR}/3.json"
+    >"${DB_DIR}/3.json"
 
 echo "Download and parse Bootstrap 4..."
 python \
@@ -24,7 +24,7 @@ python \
     --output_format="json" \
     --lib_name="Bootstrap" \
     --lib_version="4" \
-    > "${DB_DIR}/4.json"
+    >"${DB_DIR}/4.json"
 
 echo "Download and parse Bootstrap 5..."
 python \
@@ -33,6 +33,6 @@ python \
     --output_format="json" \
     --lib_name="Bootstrap" \
     --lib_version="5" \
-    > "${DB_DIR}/5.json"
+    >"${DB_DIR}/5.json"
 
 popd || exit
