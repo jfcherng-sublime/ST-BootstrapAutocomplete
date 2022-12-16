@@ -1,7 +1,7 @@
 # ST-BootstrapAutocomplete
 
 [![Required ST Build](https://img.shields.io/badge/ST-4105+-orange.svg?style=flat-square&logo=sublime-text)](https://www.sublimetext.com)
-[![GitHub Actions](https://img.shields.io/github/workflow/status/jfcherng-sublime/ST-BootstrapAutocomplete/Python?style=flat-square)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/actions)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/jfcherng-sublime/ST-BootstrapAutocomplete/python.yml?branch=st4&style=flat-square)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/actions)
 [![Package Control](https://img.shields.io/packagecontrol/dt/BootstrapAutocomplete?style=flat-square)](https://packagecontrol.io/packages/BootstrapAutocomplete)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/tags)
 [![Project license](https://img.shields.io/github/license/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/blob/st4/LICENSE)
