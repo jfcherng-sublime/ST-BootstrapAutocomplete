@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 1.3.8
+
+- chore: update db for 5.3.0-alpha3
+
 ## 1.3.7
 
 - chore: update db for 4.6.2
