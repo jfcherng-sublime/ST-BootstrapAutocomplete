@@ -1,11 +1,13 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import List, Tuple, TypedDict
+from typing import TypedDict
 
 
 class DbSchema(TypedDict):
     name: str
     version: str
-    classes: List[str]
+    classes: list[str]
 
 
 @dataclass
@@ -18,5 +20,5 @@ class DatabaseItem:
 @dataclass
 class NormalizedDatabaseItem:
     lib_name: str  # the name of the lib
-    lib_versions: Tuple[str, ...]  # versions of the lib
+    lib_versions: tuple[str, ...]  # versions of the lib
     item_name: str  # the trigger of the completion

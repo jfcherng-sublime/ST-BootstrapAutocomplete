@@ -1,4 +1,6 @@
-from typing import Iterable, List, Optional
+from __future__ import annotations
+
+from typing import Iterable
 
 import sublime
 import sublime_plugin
@@ -12,13 +14,13 @@ class BootstrapAutocompleteEventListener(sublime_plugin.EventListener):
         self,
         view: sublime.View,
         prefix: str,
-        locations: List[int],
-    ) -> Optional[sublime.CompletionList]:
+        locations: list[int],
+    ) -> sublime.CompletionList | None:
         if view.element() or not (window := view.window()):
             return None
 
         point = locations[0]
-        selectors: List[str] = get_merged_plugin_setting(window, "selectors")
+        selectors: list[str] = get_merged_plugin_setting(window, "selectors")
 
         if not self._point_match_selectors(view, point, selectors):
             return None

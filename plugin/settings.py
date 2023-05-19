@@ -2,13 +2,13 @@ from __future__ import annotations
 
 # __future__ must be the first import
 from collections import ChainMap
-from typing import Any, Callable, Dict, List, Mapping, MutableMapping, Optional, Set
+from typing import Any, Callable, Mapping, MutableMapping
 
 import sublime
 import sublime_plugin
 
 
-def get_merged_plugin_setting(window: sublime.Window, key: str, default: Optional[Any] = None) -> Any:
+def get_merged_plugin_setting(window: sublime.Window, key: str, default: Any | None = None) -> Any:
     return get_merged_plugin_settings(window).get(key, default)
 
 
@@ -16,7 +16,7 @@ def get_merged_plugin_settings(window: sublime.Window) -> MergedSettingsDict:
     return AioSettings.get_all(window)
 
 
-def get_st_setting(key: str, default: Optional[Any] = None) -> Any:
+def get_st_setting(key: str, default: Any | None = None) -> Any:
     return get_st_settings().get(key, default)
 
 
@@ -50,18 +50,18 @@ WindowId = int
 class AioSettings(sublime_plugin.EventListener):
     plugin_name: str = ""
 
-    _on_settings_change_callbacks: Dict[str, Callable[[sublime.Window], None]] = {}
-    _plugin_settings_object: Optional[sublime.Settings] = None
-    _settings_normalizer: Optional[Callable[[SettingsDict], None]] = None
-    _settings_producer: Optional[Callable[[MergedSettingsDict], Dict[str, Any]]] = None
-    _tracked_windows: Set[int] = set()
+    _on_settings_change_callbacks: dict[str, Callable[[sublime.Window], None]] = {}
+    _plugin_settings_object: sublime.Settings | None = None
+    _settings_normalizer: Callable[[SettingsDict], None] | None = None
+    _settings_producer: Callable[[MergedSettingsDict], dict[str, Any]] | None = None
+    _tracked_windows: set[int] = set()
 
     # application-level
     _plugin_settings: SettingsDict = {}
 
     # window-level
-    _project_plugin_settings: Dict[WindowId, SettingsDict] = {}
-    _merged_plugin_settings: Dict[WindowId, MergedSettingsDict] = {}
+    _project_plugin_settings: dict[WindowId, SettingsDict] = {}
+    _merged_plugin_settings: dict[WindowId, MergedSettingsDict] = {}
 
     # ----------- #
     # public APIs #
@@ -87,15 +87,15 @@ class AioSettings(sublime_plugin.EventListener):
         cls._on_settings_change_callbacks.pop(key, None)
 
     @classmethod
-    def set_settings_normalizer(cls, normalizer: Optional[Callable[[SettingsDict], None]]) -> None:
+    def set_settings_normalizer(cls, normalizer: Callable[[SettingsDict], None] | None) -> None:
         cls._settings_normalizer = normalizer
 
     @classmethod
-    def set_settings_producer(cls, producer: Optional[Callable[[MergedSettingsDict], Dict[str, Any]]]) -> None:
+    def set_settings_producer(cls, producer: Callable[[MergedSettingsDict], dict[str, Any]] | None) -> None:
         cls._settings_producer = producer
 
     @classmethod
-    def get(cls, window: sublime.Window, key: str, default: Optional[Any] = None) -> Any:
+    def get(cls, window: sublime.Window, key: str, default: Any | None = None) -> Any:
         return cls.get_all(window).get(key, default)
 
     @classmethod
@@ -141,7 +141,7 @@ class AioSettings(sublime_plugin.EventListener):
         return window.id() in cls._tracked_windows
 
     @classmethod
-    def _on_settings_change(cls, windows: Optional[List[sublime.Window]] = None, run_callbacks: bool = True) -> None:
+    def _on_settings_change(cls, windows: list[sublime.Window] | None = None, run_callbacks: bool = True) -> None:
         if windows is None:
             # refresh all windows
             windows = sublime.windows()

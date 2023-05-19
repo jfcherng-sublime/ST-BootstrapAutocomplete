@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from functools import lru_cache
 from itertools import groupby
-from typing import Generator, Iterable, Tuple
+from typing import Generator, Iterable
 
 import sublime
 
@@ -57,7 +59,7 @@ def _get_database_items(versions: Iterable[str]) -> Generator[DatabaseItem, None
 
 
 def _normalize_database_items(items: Iterable[DatabaseItem]) -> Generator[NormalizedDatabaseItem, None, None]:
-    def sorter(item: DatabaseItem) -> Tuple[str, str]:
+    def sorter(item: DatabaseItem) -> tuple[str, str]:
         return (item.lib_name, item.item_name)
 
     # pre-sort for groupby
