@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 2.0.0
+
+- feat: use Bootstrap v5 by default
+
 ## 1.3.9
 
 - chore: tidy codes
