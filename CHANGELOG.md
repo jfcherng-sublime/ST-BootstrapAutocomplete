@@ -1,5 +1,10 @@
 # BootstrapAutocomplete Changelog
 
+## 1.3.9
+
+- chore: tidy codes
+- chore: disable in PHP array key
+
 ## 1.3.8
 
 - chore: update db for 5.3.0-alpha3
