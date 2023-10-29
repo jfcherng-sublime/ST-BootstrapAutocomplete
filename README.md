@@ -16,7 +16,7 @@ This Sublime Text **4** plugin means to unify other Bootstrap autocompletion plu
 - Maybe more implicit ones...
 
 This plugin is designed to support various versions of Bootstrap's autocompletion with ease.
-At this moment, it supports Bootstrap 2, 3, 4 (default) and 5. If you find a missing class name,
+At this moment, it supports Bootstrap 2, 3, 4 and 5 (default). If you find a missing class name,
 an issue or pull request is always welcome.
 
 ![screenshot-st4](https://raw.githubusercontent.com/jfcherng-sublime/ST-BootstrapAutocomplete/st4/docs/screenshot-st4.png)
@@ -33,11 +33,11 @@ From the main menu: `Preferences` » `BootstrapAutocomplete` » `Settings`
 {
     // scopes that this plugin should activated
     "selectors": [
-        "text.html string.quoted - meta.path",
+        "text.html string.quoted - meta.path - meta.item-access",
         "text.html meta.attribute-with-value.class",
     ],
     // targeted Bootstrap versions (available versions are: "2", "3", "4", "5")
-    "versions": ["4"],
+    "versions": ["5"],
 }
 ```
 
@@ -57,8 +57,8 @@ From the main menu: `Project` » `Edit Project`
     "settings": {
         // settings here will override global settings
         "BootstrapAutocomplete": {
-            // use Bootstrap 5 for this project.
-            "versions": ["5"],
+            // use Bootstrap 4 for this project.
+            "versions": ["4"],
         },
     },
 }
@@ -71,17 +71,17 @@ This plugin's autocompletion lists are extracted from
 - Official Bootstrap `v2.3.2`
 - Official Bootstrap `v3.4.1`
 - Official Bootstrap `v4.6.2`
-- Official Bootstrap `v5.3.0`
+- Official Bootstrap `v5.3.2`
 
 with `scripts/extract_class_names_auto.sh`.
 
 ```bash
 # setup environment
 python -m venv .venv
-source .venv/Scripts/activate # if on Windows
-source .venv/bin/activate # if not on Windows
+. .venv/Scripts/activate # if on Windows
+. .venv/bin/activate # if not on Windows
 python -m pip install -U -r requirements.txt
 
 # extract class names
-bash "scripts/extract_class_names_auto.sh"
+./scripts/extract_class_names_auto.sh
 ```
