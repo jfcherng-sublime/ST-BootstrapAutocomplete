@@ -1,7 +1,7 @@
 {
     // scopes that this plugin should activated
     "selectors": [
-        "text.html string.quoted - meta.path",
+        "text.html string.quoted - meta.path - meta.item-access",
         "text.html meta.attribute-with-value.class",
     ],
     // targeted Bootstrap versions (available versions are: "2", 3", "4", "5")
