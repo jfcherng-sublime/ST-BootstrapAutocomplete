@@ -1,13 +1,14 @@
 # This is an implicit value, here for clarity
 --index https://pypi.python.org/simple/
 
-autoflake8
 black
-flake8
-isort
 mypy
+ruff
 
-# for scripts
+# ----------- #
+# for scripts #
+# ----------- #
+
 fire
 requests
 tinycss2

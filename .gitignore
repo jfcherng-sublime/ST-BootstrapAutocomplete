@@ -5,10 +5,12 @@ Thumbs.db
 
 # Python
 *.py[cod]
-.mypy_cache
-.venv
-venv
-__pycache__
+.*_cache/
+.venv-*/
+.venv/
+__pycache__/
+venv-*/
+venv/
 
 # misc
 /_*.json
