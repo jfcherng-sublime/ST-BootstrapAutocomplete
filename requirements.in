@@ -5,6 +5,6 @@ ruff>=0.3
 # for scripts #
 # ----------- #
 
-fire
-requests
 tinycss2
+typer>=0.12.3,<1
+typing_extensions

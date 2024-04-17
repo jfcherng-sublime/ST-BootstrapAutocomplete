@@ -12,27 +12,27 @@ echo "Download and parse Bootstrap 3..."
 python \
     "${SCRIPT_DIR}/extract_class_names.py" \
     "https://cdn.jsdelivr.net/npm/bootstrap@3/dist/css/bootstrap.min.css" \
-    --output_format="json" \
-    --lib_name="Bootstrap" \
-    --lib_version="3" \
+    --output-format="json" \
+    --lib-name="Bootstrap" \
+    --lib-version="3" \
     >"${DB_DIR}/3.json"
 
 echo "Download and parse Bootstrap 4..."
 python \
     "${SCRIPT_DIR}/extract_class_names.py" \
     "https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" \
-    --output_format="json" \
-    --lib_name="Bootstrap" \
-    --lib_version="4" \
+    --output-format="json" \
+    --lib-name="Bootstrap" \
+    --lib-version="4" \
     >"${DB_DIR}/4.json"
 
 echo "Download and parse Bootstrap 5..."
 python \
     "${SCRIPT_DIR}/extract_class_names.py" \
     "https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" \
-    --output_format="json" \
-    --lib_name="Bootstrap" \
-    --lib_version="5" \
+    --output-format="json" \
+    --lib-name="Bootstrap" \
+    --lib-version="5" \
     >"${DB_DIR}/5.json"
 
 popd || exit
