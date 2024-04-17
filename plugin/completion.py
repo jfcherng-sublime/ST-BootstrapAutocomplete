@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from functools import lru_cache
 from itertools import groupby
 from typing import Generator, Iterable
@@ -12,7 +13,7 @@ from .types import DatabaseItem, DbSchema, NormalizedDatabaseItem
 
 @lru_cache
 def load_database(version: str) -> DbSchema:
-    return sublime.decode_value(sublime.load_resource(str(DB_DIR / f"{version}.json")))
+    return json.loads(sublime.load_resource(str(DB_DIR / f"{version}.json")))
 
 
 @lru_cache
@@ -27,7 +28,7 @@ def get_completion_list(version_str: str) -> sublime.CompletionList:
     :rtype:     sublime.CompletionList
     """
 
-    versions = tuple(sorted(set(version_str.split(",") if version_str else [])))
+    versions = sorted(set(filter(None, map(str.strip, version_str.split(",")))))
     items = _get_database_items(versions)
 
     return sublime.CompletionList(
@@ -71,6 +72,6 @@ def _normalize_database_items(items: Iterable[DatabaseItem]) -> Generator[Normal
         group_item = group_items[0]
         yield NormalizedDatabaseItem(
             lib_name=group_item.lib_name,
-            lib_versions=tuple(sorted(item.lib_version for item in group_items)),
+            lib_versions=sorted(item.lib_version for item in group_items),
             item_name=group_item.item_name,
         )

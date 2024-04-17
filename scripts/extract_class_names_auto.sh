@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="${SCRIPT_DIR}/.."
 DB_DIR="${PROJECT_DIR}/db"
 
-mkdir -p "${DB_DIR}"
+mkdir -p -- "${DB_DIR}"
 
-pushd "${PROJECT_DIR}" || exit
+pushd -- "${PROJECT_DIR}" || exit
 
 echo "Download and parse Bootstrap 3..."
 python \

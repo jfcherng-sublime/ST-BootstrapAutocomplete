@@ -12,13 +12,19 @@ class DbSchema(TypedDict):
 
 @dataclass
 class DatabaseItem:
-    lib_name: str  # the name of the lib
-    lib_version: str  # the version of the lib
-    item_name: str  # the trigger of the completion
+    lib_name: str
+    """The name of the lib."""
+    lib_version: str
+    """The version of the lib."""
+    item_name: str
+    """The trigger of the completion."""
 
 
 @dataclass
 class NormalizedDatabaseItem:
-    lib_name: str  # the name of the lib
-    lib_versions: tuple[str, ...]  # versions of the lib
-    item_name: str  # the trigger of the completion
+    lib_name: str
+    """The name of the lib."""
+    lib_versions: list[str]
+    """Versions of the lib."""
+    item_name: str
+    """The trigger of the completion."""
