@@ -25,7 +25,8 @@ class BootstrapAutocompleteEventListener(sublime_plugin.EventListener):
         if not self._point_match_selectors(view, point, selectors):
             return None
 
-        return get_completion_list(",".join(get_merged_plugin_setting(window, "versions")))
+        versions = get_merged_plugin_setting(window, "versions")
+        return get_completion_list(versions)
 
     @staticmethod
     def _point_match_selectors(view: sublime.View, point: int, selectors: Iterable[str]) -> bool:

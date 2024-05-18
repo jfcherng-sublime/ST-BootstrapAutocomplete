@@ -1,17 +1,15 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import TypedDict
+from pydantic import BaseModel
 
 
-class DbSchema(TypedDict):
+class DbModel(BaseModel):
     name: str
     version: str
     classes: list[str]
 
 
-@dataclass
-class DatabaseItem:
+class DbItem(BaseModel):
     lib_name: str
     """The name of the lib."""
     lib_version: str
@@ -20,8 +18,7 @@ class DatabaseItem:
     """The trigger of the completion."""
 
 
-@dataclass
-class NormalizedDatabaseItem:
+class NormalizedDbItem(BaseModel):
     lib_name: str
     """The name of the lib."""
     lib_versions: list[str]

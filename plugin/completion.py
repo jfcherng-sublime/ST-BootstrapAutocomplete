@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from functools import lru_cache
 from itertools import groupby
 from typing import Generator, Iterable
@@ -8,70 +7,58 @@ from typing import Generator, Iterable
 import sublime
 
 from .constant import DB_DIR
-from .types import DatabaseItem, DbSchema, NormalizedDatabaseItem
+from .data_types import DbItem, DbModel, NormalizedDbItem
+from .utils import sort_uniq
+
+
+def load_db(version: str) -> DbModel:
+    return DbModel.model_validate_json(sublime.load_resource(str(DB_DIR / f"{version}.json")))
+
+
+def get_completion_list(versions: str | tuple[str, ...]) -> sublime.CompletionList:
+    """Gets the completion items."""
+    # normalize `versions` for `lru_cache`
+    if isinstance(versions, str):
+        versions = (versions,)
+    versions = tuple(sort_uniq(versions))
+    return _get_completion_list(versions)
 
 
 @lru_cache
-def load_database(version: str) -> DbSchema:
-    return json.loads(sublime.load_resource(str(DB_DIR / f"{version}.json")))
-
-
-@lru_cache
-def get_completion_list(version_str: str) -> sublime.CompletionList:
-    """
-    Gets the completion items.
-
-    :param      version_str:  Versions separated with ","
-    :type       version_str:  str
-
-    :returns:   The completion items.
-    :rtype:     sublime.CompletionList
-    """
-
-    versions = sorted(set(filter(None, map(str.strip, version_str.split(",")))))
-    items = _get_database_items(versions)
+def _get_completion_list(versions: tuple[str, ...]) -> sublime.CompletionList:
+    """Gets the completion items. (LRU cache)"""
+    db_items = [item for version in versions for item in _list_db_items(version)]
 
     return sublime.CompletionList(
         tuple(
-            map(
-                lambda item: sublime.CompletionItem(
-                    trigger=item.item_name,
-                    annotation=f"{item.lib_name} {'/'.join(item.lib_versions)}",
-                    completion=item.item_name,
-                    completion_format=sublime.COMPLETION_FORMAT_TEXT,
-                    kind=(sublime.KIND_ID_MARKUP, "c", ""),
-                    details="",
-                ),
-                _normalize_database_items(items),
+            sublime.CompletionItem(
+                trigger=item.item_name,
+                annotation=f"{item.lib_name} {'/'.join(item.lib_versions)}",
+                completion=item.item_name,
+                completion_format=sublime.COMPLETION_FORMAT_TEXT,
+                kind=(sublime.KIND_ID_MARKUP, "c", ""),
+                details="",
             )
+            for item in _normalize_db_items_for_completion(db_items)
         )
     )
 
 
-def _get_database_items(versions: Iterable[str]) -> Generator[DatabaseItem, None, None]:
-    for version in versions:
-        db = load_database(version)
-        for name in db["classes"]:
-            yield DatabaseItem(
-                lib_name=db["name"],
-                lib_version=db["version"],
-                item_name=name,
-            )
+def _list_db_items(version: str) -> Generator[DbItem, None, None]:
+    db = load_db(version)
+    yield from (DbItem(lib_name=db.name, lib_version=db.version, item_name=name) for name in db.classes)
 
 
-def _normalize_database_items(items: Iterable[DatabaseItem]) -> Generator[NormalizedDatabaseItem, None, None]:
-    def sorter(item: DatabaseItem) -> tuple[str, str]:
+def _normalize_db_items_for_completion(db_items: Iterable[DbItem]) -> Generator[NormalizedDbItem, None, None]:
+    def sorter(item: DbItem) -> tuple[str, str]:
         return (item.lib_name, item.item_name)
 
     # pre-sort for groupby
-    items = sorted(items, key=sorter)
-
+    db_items = sorted(db_items, key=sorter)
     # merges same-name items which have different versions
-    for _, group in groupby(items, sorter):
-        group_items = tuple(group)
-        group_item = group_items[0]
-        yield NormalizedDatabaseItem(
-            lib_name=group_item.lib_name,
-            lib_versions=sorted(item.lib_version for item in group_items),
-            item_name=group_item.item_name,
+    for (lib_name, item_name), group in groupby(db_items, sorter):
+        yield NormalizedDbItem(
+            lib_name=lib_name,
+            lib_versions=sorted(item.lib_version for item in group),
+            item_name=item_name,
         )
