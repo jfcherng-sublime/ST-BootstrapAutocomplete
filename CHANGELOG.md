@@ -1,5 +1,10 @@
 # BootstrapAutocomplete Changelog
 
+## 2.0.1
+
+- refactor: scripts/extract_class_names.py with typer
+- refactor: some internal refactoring
+
 ## 2.0.0
 
 - feat: use Bootstrap v5 by default
