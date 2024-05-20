@@ -3,7 +3,6 @@
         "*": [
             "annotated-types",
             "eval-type-backport",
-            "more-itertools",
             "pydantic",
             "pydantic-core",
             "typing-extensions"
