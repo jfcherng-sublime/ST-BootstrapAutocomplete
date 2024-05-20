@@ -24,7 +24,7 @@ def get_completion_list(versions: str | tuple[str, ...]) -> sublime.CompletionLi
     return _get_completion_list(versions)
 
 
-@lru_cache
+@lru_cache(maxsize=5)
 def _get_completion_list(versions: tuple[str, ...]) -> sublime.CompletionList:
     """Gets the completion items. (LRU cache)"""
     db_items = [item for version in versions for item in _list_db_items(version)]
