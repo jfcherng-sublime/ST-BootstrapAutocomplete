@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from pydantic import BaseModel
 
 
@@ -9,7 +11,8 @@ class DbModel(BaseModel):
     classes: list[str]
 
 
-class DbItem(BaseModel):
+@dataclass
+class DbItem:
     lib_name: str
     """The name of the lib."""
     lib_version: str
@@ -18,7 +21,8 @@ class DbItem(BaseModel):
     """The trigger of the completion."""
 
 
-class NormalizedDbItem(BaseModel):
+@dataclass
+class NormalizedDbItem:
     lib_name: str
     """The name of the lib."""
     lib_versions: list[str]
