@@ -1,5 +1,12 @@
 # BootstrapAutocomplete Changelog
 
+## 2.0.3
+
+- chore: remove unused `more-itertools` from `dependencies.json`
+- chore: set `maxsize` for `lru_cache`
+- perf: use `sublime.load_binary_resource` to load DB
+- refactor: replace `pydantic` with `dataclass` if no validation required
+
 ## 2.0.2
 
 - refactor: use `pydantic`
