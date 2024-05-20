@@ -12,7 +12,7 @@ from .utils import sort_uniq
 
 
 def load_db(version: str) -> DbModel:
-    return DbModel.model_validate_json(sublime.load_resource(str(DB_DIR / f"{version}.json")))
+    return DbModel.model_validate_json(sublime.load_binary_resource(str(DB_DIR / f"{version}.json")))
 
 
 def get_completion_list(versions: str | tuple[str, ...]) -> sublime.CompletionList:
