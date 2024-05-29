@@ -1,1 +1,2 @@
 pydantic>=2.7,<3
+typing_extensions>=4.12

@@ -1,7 +1,7 @@
 -r requirements.in
 
-mypy
-ruff>=0.4
+mypy>=1.13
+ruff>=0.7
 
 # ----------- #
 # for scripts #
