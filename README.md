@@ -8,7 +8,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/jfcherng-sublime/ST-BootstrapAutocomplete?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-BootstrapAutocomplete/stargazers)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-blue.svg?style=flat-square&logo=paypal)](https://www.paypal.me/jfcherng/5usd)
 
-This Sublime Text **4** plugin means to unify other Bootstrap autocompletion plugins.
+This Sublime Text **4** plugin means to unify other [Bootstrap](https://github.com/twbs/bootstrap) autocompletion plugins.
 
 - [Bootstrap 3 Autocomplete](https://packagecontrol.io/packages/Bootstrap%203%20Autocomplete)
 - [Bootstrap 4 Autocomplete](https://packagecontrol.io/packages/Bootstrap%204%20Autocomplete)
