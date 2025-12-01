@@ -1,14 +1,13 @@
 from __future__ import annotations
 
+from collections.abc import Generator, Iterable
 from functools import lru_cache
 from itertools import groupby
-from typing import Generator, Iterable
 
 import sublime
 
 from .constant import DB_DIR
 from .data_types import DbItem, DbModel, NormalizedDbItem
-from .utils import sort_uniq
 
 
 def load_db(version: str) -> DbModel:
@@ -20,7 +19,7 @@ def get_completion_list(versions: str | tuple[str, ...]) -> sublime.CompletionLi
     # normalize `versions` for `lru_cache`
     if isinstance(versions, str):
         versions = (versions,)
-    versions = tuple(sort_uniq(versions))
+    versions = tuple(sorted(set(versions)))
     return _get_completion_list(versions)
 
 
@@ -44,12 +43,12 @@ def _get_completion_list(versions: tuple[str, ...]) -> sublime.CompletionList:
     )
 
 
-def _list_db_items(version: str) -> Generator[DbItem, None, None]:
+def _list_db_items(version: str) -> Generator[DbItem]:
     db = load_db(version)
     yield from (DbItem(lib_name=db.name, lib_version=db.version, item_name=name) for name in db.classes)
 
 
-def _normalize_db_items_for_completion(db_items: Iterable[DbItem]) -> Generator[NormalizedDbItem, None, None]:
+def _normalize_db_items_for_completion(db_items: Iterable[DbItem]) -> Generator[NormalizedDbItem]:
     def sorter(item: DbItem) -> tuple[str, str]:
         return (item.lib_name, item.item_name)
 

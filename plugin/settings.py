@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-# __future__ must be the first import
 from collections import ChainMap
-from typing import Any, Callable, Mapping, MutableMapping
+from collections.abc import Callable, Mapping, MutableMapping
+from typing import Any
 
 import sublime
 import sublime_plugin
@@ -42,9 +42,9 @@ def settings_normalizer(settings: SettingsDict) -> None:
         settings["versions"] = list(map(str, versions))  # in case someone uses int values...
 
 
-SettingsDict = MutableMapping[str, Any]
-MergedSettingsDict = Mapping[str, Any]
-WindowId = int
+type SettingsDict = MutableMapping[str, Any]
+type MergedSettingsDict = Mapping[str, Any]
+type WindowId = int
 
 
 class AioSettings(sublime_plugin.EventListener):

@@ -6,24 +6,16 @@ import json
 import sys
 import urllib.request
 from collections.abc import Generator, Iterable
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
+from typing import Annotated
 
 import tinycss2.ast as cssast
 import typer
 from tinycss2 import parse_stylesheet
-from typing_extensions import Annotated
 
 # always use \n as line ending for printing
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, newline="\n")
-
-if sys.version_info >= (3, 11):
-    from enum import StrEnum
-else:
-
-    class StrEnum(str, Enum):
-        __str__ = str.__str__  # type: ignore
-        __format__ = str.__format__  # type: ignore
 
 
 class CliOutputFormat(StrEnum):
@@ -75,7 +67,7 @@ def extract_stylesheet_class_names(
         print("\n".join(class_names_sorted))
 
 
-def find_class_names(nodes: Iterable[cssast.Node]) -> Generator[str, None, None]:
+def find_class_names(nodes: Iterable[cssast.Node]) -> Generator[str]:
     prev_node: cssast.Node | None = None
     for node in nodes:
         if (
