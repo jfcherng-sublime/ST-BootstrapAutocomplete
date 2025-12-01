@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 3.0.0
+
+- refactor: use Python 3.13 (ST>=4201)
+
 ## 2.0.3
 
 - chore: remove unused `more-itertools` from `dependencies.json`
