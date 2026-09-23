@@ -1,5 +1,10 @@
 # BootstrapAutocomplete Changelog
 
+## 4.0.0
+
+- refactor: use Python 3.14 (ST>=4205)
+- fix: workaround `pydantic` core version mismatch
+
 ## 3.0.0
 
 - refactor: use Python 3.13 (ST>=4201)
