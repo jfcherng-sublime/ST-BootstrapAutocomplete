@@ -3,7 +3,7 @@ name = "BootstrapAutocomplete"
 version = "0.0.0"
 description = "Sublime Text 4 plugin for Bootstrap class name autocompletion."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
   "pydantic>=2,<3",
   "typing-extensions>=4.15",
@@ -11,8 +11,8 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-  "mypy>=1.19",
-  "ruff>=0.14",
+  "mypy>=1.20",
+  "ruff>=0.15",
 
   # extra scripts
   "tinycss2",
@@ -27,7 +27,7 @@ default-groups = ["dev"]
 check_untyped_defs = true
 strict_optional = true
 mypy_path = 'typings:stubs'
-python_version = '3.13'
+python_version = '3.14'
 
 [[tool.mypy.overrides]]
 module = ["plugin.libs.*"]
@@ -46,12 +46,12 @@ exclude = [
 ]
 ignore = ['**/.venv', '**/libs']
 stubPath = 'typings'
-pythonVersion = '3.13'
+pythonVersion = '3.14'
 
 [tool.ruff]
 preview = true
 line-length = 120
-target-version = 'py313'
+target-version = 'py314'
 exclude = [
   "*/libs/*",
   ".git",
