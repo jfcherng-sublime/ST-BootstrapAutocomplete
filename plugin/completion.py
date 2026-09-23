@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from collections.abc import Generator, Iterable
 from functools import lru_cache
 from itertools import groupby

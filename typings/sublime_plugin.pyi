@@ -981,7 +981,28 @@ class MultizipImporter(importlib.abc.MetaPathFinder):
         ...
 
 
-class ZipResourceReader(importlib.abc.ResourceReader):
+class _ResourceReader:
+    """
+    The ResourceReader interface.
+
+    Note: ``importlib.abc.ResourceReader`` was removed from the standard library
+    in Python 3.13, so this interface is preserved here to keep the ST API typed.
+    """
+
+    def open_resource(self, resource: bytes | str | os.PathLike[Any]) -> io.BytesIO:
+        ...
+
+    def resource_path(self, resource: bytes | str | os.PathLike[Any]) -> str:
+        ...
+
+    def is_resource(self, name: str) -> bool:
+        ...
+
+    def contents(self) -> Iterator[str]:
+        ...
+
+
+class ZipResourceReader(_ResourceReader):
     """
     Implements the resource reader interface introduced in Python 3.7
     """
@@ -1094,7 +1115,7 @@ class ZipLoader(importlib.abc.InspectLoader):
         """
         ...
 
-    def get_resource_reader(self, fullname: str) -> None | importlib.abc.ResourceReader:
+    def get_resource_reader(self, fullname: str) -> None | _ResourceReader:
         """
         :param fullname:
             A unicode string of the module name to get the resource reader for

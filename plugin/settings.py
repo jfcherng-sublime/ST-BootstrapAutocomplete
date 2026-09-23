@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from collections import ChainMap
 from collections.abc import Callable, Mapping, MutableMapping
 from typing import Any
