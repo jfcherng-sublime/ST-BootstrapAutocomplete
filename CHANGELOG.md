@@ -1,5 +1,9 @@
 # BootstrapAutocomplete Changelog
 
+## 4.0.1
+
+- fix: plugin should use py314 plugin host
+
 ## 4.0.0
 
 - refactor: use Python 3.14 (ST>=4205)
